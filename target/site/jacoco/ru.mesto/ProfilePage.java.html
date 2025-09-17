@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProfilePage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mesto-autotests</a> &gt; <a href="index.source.html" class="el_package">ru.mesto</a> &gt; <span class="el_source">ProfilePage.java</span></div><h1>ProfilePage.java</h1><pre class="source lang-java linenums">package ru.mesto;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+/**
+ * Page Object для страницы редактирования профиля.
+ * Содержит методы для установки новой активности и сохранения изменений.
+ */
+public class ProfilePage {
+    private final WebDriver driver;
+<span class="fc" id="L16">    private final By activity = By.id(&quot;owner-description&quot;);</span>
+<span class="fc" id="L17">    private final By save = By.className(&quot;popup__button&quot;);</span>
+
+<span class="fc" id="L19">    public ProfilePage(WebDriver driver) {</span>
+<span class="fc" id="L20">        this.driver = driver;</span>
+<span class="fc" id="L21">    }</span>
+
+    /**
+     * Устанавливает новое значение активности пользователя.
+     * Ожидает доступности поля, очищает его и вводит новое значение.
+     * @param newActivity новое значение активности
+     */
+    public void setNewActivity(String newActivity) {
+<span class="fc" id="L29">        new WebDriverWait(driver, Duration.ofSeconds(5))</span>
+<span class="fc" id="L30">                .until(ExpectedConditions.elementToBeClickable(activity));</span>
+<span class="fc" id="L31">        driver.findElement(activity).clear();</span>
+<span class="fc" id="L32">        driver.findElement(activity).sendKeys(newActivity);</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Нажимает кнопку сохранения изменений профиля.
+     * Ожидает доступности кнопки, нажимает ее и ожидает исчезновения (в продакшн среде).
+     */
+    public void clickSaveButton() {
+<span class="fc" id="L40">        new WebDriverWait(driver, Duration.ofSeconds(5))</span>
+<span class="fc" id="L41">                .until(ExpectedConditions.elementToBeClickable(save));</span>
+<span class="fc" id="L42">        driver.findElement(save).click();</span>
+
+        // В тестовой среде ожидание исчезновения отключено
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (!System.getProperty(&quot;test.env&quot;, &quot;production&quot;).equals(&quot;test&quot;)) {</span>
+<span class="fc" id="L46">            new WebDriverWait(driver, Duration.ofSeconds(5))</span>
+<span class="fc" id="L47">                    .until(ExpectedConditions.invisibilityOfElementLocated(save));</span>
+        }
+<span class="fc" id="L49">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+mesto-autotests,ru.mesto,LoginPage,0,60,0,0,0,16,0,5,0,5
+mesto-autotests,ru.mesto,ProfilePage,0,82,0,2,0,17,0,4,0,3
+mesto-autotests,ru.mesto,WebDriverFactory,0,54,0,2,0,8,0,2,0,1
+mesto-autotests,ru.mesto,HeaderPage,0,30,0,0,0,8,0,3,0,3
+mesto-autotests,ru.mesto,HomePage,0,73,0,0,0,17,0,5,0,5

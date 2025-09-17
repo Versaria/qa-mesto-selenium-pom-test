@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HomePage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mesto-autotests</a> &gt; <a href="index.source.html" class="el_package">ru.mesto</a> &gt; <span class="el_source">HomePage.java</span></div><h1>HomePage.java</h1><pre class="source lang-java linenums">package ru.mesto;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+/**
+ * Page Object для главной страницы.
+ * Содержит методы для ожидания загрузки данных профиля, нажатия кнопки редактирования профиля,
+ * ожидания изменения активности и получения текста активности.
+ */
+public class HomePage {
+    private final WebDriver driver;
+<span class="fc" id="L17">    private final By profileTitle = By.className(&quot;profile__title&quot;);</span>
+<span class="fc" id="L18">    private final By editProfileButton = By.className(&quot;profile__edit-button&quot;);</span>
+<span class="fc" id="L19">    private final By activity = By.className(&quot;profile__description&quot;);</span>
+
+<span class="fc" id="L21">    public HomePage(WebDriver driver) {</span>
+<span class="fc" id="L22">        this.driver = driver;</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Ожидает загрузки данных профиля на главной странице.
+     * Ожидает видимость элемента с заголовком профиля и наличие непустого текста в нем.
+     */
+    public void waitForLoadProfileData() {
+<span class="fc" id="L30">        new WebDriverWait(driver, Duration.ofSeconds(10))</span>
+<span class="fc" id="L31">                .until(ExpectedConditions.visibilityOfElementLocated(profileTitle));</span>
+<span class="fc" id="L32">        new WebDriverWait(driver, Duration.ofSeconds(10))</span>
+<span class="fc" id="L33">                .until(ExpectedConditions.not(ExpectedConditions.textToBe(profileTitle, &quot;&quot;)));</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Нажимает кнопку редактирования профиля.
+     */
+    public void clickEditProfileButton() {
+<span class="fc" id="L40">        driver.findElement(editProfileButton).click();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Ожидает изменения активности пользователя на указанное значение.
+     * @param changed ожидаемое значение активности
+     */
+    public void waitForChangedActivity(String changed) {
+<span class="fc" id="L48">        new WebDriverWait(driver, Duration.ofSeconds(10))</span>
+<span class="fc" id="L49">                .until(ExpectedConditions.textToBePresentInElementLocated(activity, changed));</span>
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Возвращает текущее значение активности пользователя.
+     * @return String активность пользователя
+     */
+    public String getActivity() {
+<span class="fc" id="L57">        return driver.findElement(activity).getText();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LoginPage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mesto-autotests</a> &gt; <a href="index.source.html" class="el_package">ru.mesto</a> &gt; <span class="el_source">LoginPage.java</span></div><h1>LoginPage.java</h1><pre class="source lang-java linenums">package ru.mesto;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+
+/**
+ * Page Object для страницы авторизации.
+ * Содержит методы для ввода email, пароля, нажатия кнопки входа и комплексный метод авторизации.
+ */
+public class LoginPage {
+    private final WebDriver driver;
+<span class="fc" id="L12">    private final By emailField = By.id(&quot;email&quot;);</span>
+<span class="fc" id="L13">    private final By passwordField = By.id(&quot;password&quot;);</span>
+<span class="fc" id="L14">    private final By signInButton = By.className(&quot;auth-form__button&quot;);</span>
+
+<span class="fc" id="L16">    public LoginPage(WebDriver driver) {</span>
+<span class="fc" id="L17">        this.driver = driver;</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * Вводит email в поле ввода.
+     * @param username email пользователя
+     */
+    public void setUsername(String username) {
+<span class="fc" id="L25">        driver.findElement(emailField).sendKeys(username);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Вводит пароль в поле ввода.
+     * @param password пароль пользователя
+     */
+    public void setPassword(String password) {
+<span class="fc" id="L33">        driver.findElement(passwordField).sendKeys(password);</span>
+<span class="fc" id="L34">    }</span>
+
+    /**
+     * Нажимает кнопку входа.
+     */
+    public void clickSignInButton() {
+<span class="fc" id="L40">        driver.findElement(signInButton).click();</span>
+<span class="fc" id="L41">    }</span>
+
+    /**
+     * Выполняет авторизацию пользователя.
+     * @param username email пользователя
+     * @param password пароль пользователя
+     */
+    public void login(String username, String password) {
+<span class="fc" id="L49">        setUsername(username);</span>
+<span class="fc" id="L50">        setPassword(password);</span>
+<span class="fc" id="L51">        clickSignInButton();</span>
+<span class="fc" id="L52">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

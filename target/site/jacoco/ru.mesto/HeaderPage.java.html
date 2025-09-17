@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HeaderPage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mesto-autotests</a> &gt; <a href="index.source.html" class="el_package">ru.mesto</a> &gt; <span class="el_source">HeaderPage.java</span></div><h1>HeaderPage.java</h1><pre class="source lang-java linenums">package ru.mesto;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+/**
+ * Page Object для заголовка страницы.
+ * Содержит методы для работы с элементом заголовка, включая ожидание его загрузки и получение email пользователя.
+ */
+public class HeaderPage {
+    private final WebDriver driver;
+<span class="fc" id="L16">    private final By headerUser = By.className(&quot;header__user&quot;);</span>
+
+<span class="fc" id="L18">    public HeaderPage(WebDriver driver) {</span>
+<span class="fc" id="L19">        this.driver = driver;</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Ожидает загрузки заголовка страницы.
+     */
+    public void waitForLoadHeader() {
+<span class="fc" id="L26">        new WebDriverWait(driver, Duration.ofSeconds(3))</span>
+<span class="fc" id="L27">                .until(ExpectedConditions.visibilityOfElementLocated(headerUser));</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Возвращает email пользователя из заголовка страницы.
+     * @return String email пользователя
+     */
+    public String getEmailFromHeader() {
+<span class="fc" id="L35">        return driver.findElement(headerUser).getText();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
